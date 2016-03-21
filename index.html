@@ -86,7 +86,16 @@
           </div>
         </div>
         <div class="col-md-8">
-          <div id="allHomeTasks">
+          <form class="form-inline" id="choosePerson">
+            <div class="form-group">
+              <label for="person">Select Person</label>
+              <select class="form-control" id="person">
+
+              </select>
+            </div>
+            <button type="submit" class="btn btn-info">See Tasks</button>
+          </form>
+          <div class="taskLists" id="allHomeTasks">
             <h2>To Do: Home</h2>
             <div class="list-group" id="homeList">
 
@@ -95,21 +104,28 @@
             <hr>
           </div>
 
-          <div id="allHobbyTasks">
+          <div class="taskLists" id="allHobbyTasks">
             <h2>To Do: Hobby</h2>
             <ul class="list-group" id="hobbyList">
 
             </ul>
             <hr>
           </div>
-          <div id="allWorkTasks">
+          <div class="taskLists" id="allWorkTasks">
             <h2>To Do: Work</h2>
             <div class="list-group" id="workList">
 
             </div>
             <hr>
           </div>
+          <div class="taskLists" id="tasksByPerson">
+            <h2 id="personName"></h2>
+            <div class="list-group" id="personList">
+
+            </div>
+          </div>
         </div>
+
       </div>
 
     </div>

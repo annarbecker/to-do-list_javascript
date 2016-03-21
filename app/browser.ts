@@ -7,6 +7,20 @@ var people = ToDoList.people;
 var tasks = [];
 
 $(document).ready(function() {
+  for(var person in people) {
+    $('#person').append("<option value='" + person + "'>" + people[person].name + "</option>");
+  }
+
+  $("#choosePerson").submit(function(e){
+    e.preventDefault();
+    var name: string = $("#person").val();
+    var theseTasks = ToDoList.describeTasksForPerson(people[name], tasks);
+    $("#personName").text(people[name].name);
+    for(var blah of theseTasks) {
+      $('#personList').append('<li class="list-group-item"><h4 class="list-group-item-heading">' + blah + '</h4></li>');
+    }
+  });
+
   $('#selectCategory').submit(function(event) {
     event.preventDefault();
     $(".taskForms").hide();
