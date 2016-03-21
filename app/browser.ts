@@ -26,4 +26,17 @@ $(document).ready(function() {
       $('#hobbyTask').show();
     }
   });
+
+  $('#addHobbyTask').submit(function(event) {
+    event.preventDefault();
+    var hobby: string = $('#hobbyName').val();
+    $('#hobbyName').val('');
+    $('#hobbyList').empty();
+    tasks.push(new ToDoList.HobbyTask(hobby));
+    var hobbies = ToDoList.listTasksInCategory(ToDoList.HobbyTask, tasks);
+    console.log(hobbies);
+    for(var thing of hobbies) {
+      $('#hobbyList').append('<li class="list-group-item"><h4 class="list-group-item-heading">' + thing.description + '</h4><p class="list-group-item-text">Priority: ' + thing.priority + '</p></li>');
+    }
+  });
 });

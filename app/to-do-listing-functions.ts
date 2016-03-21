@@ -9,4 +9,15 @@ module ToDoList {
     }
     return descriptions;
   }
+
+  export var listTasksInCategory = function(category: typeof Task, taskCollection: Task[]): Task[] {
+    var selectedTasks: Task[] = [];
+    for(var task of taskCollection) {
+      if(task instanceof category) {
+        selectedTasks.push(task);
+      }
+    }
+
+    return selectedTasks;
+  }
 }
