@@ -39,4 +39,29 @@ $(document).ready(function() {
       $('#hobbyList').append('<li class="list-group-item"><h4 class="list-group-item-heading">' + thing.description + '</h4><p class="list-group-item-text">Priority: ' + thing.priority + '</p></li>');
     }
   });
+
+  $('#addHomeTask').submit(function(event) {
+    event.preventDefault();
+    var home: string = $('#homeName').val();
+    var wait: string = $('#homePriority').val();
+    var assignee: string = $('#homeAssign').val();
+
+    $('#homeName').val('');
+    $('#homeList').empty();
+    if (assignee === "none") {
+      tasks.push(new ToDoList.HomeTask(home, wait));
+    } else {
+      tasks.push(new ToDoList.HomeTask(home, wait, people[assignee]));
+    }
+    var homes = ToDoList.listTasksInCategory(ToDoList.HomeTask, tasks);
+    console.log(homes);
+    for(var thing of homes) {
+      if(thing.assignedTo === undefined) {
+        var name = '';
+      } else {
+        var name = thing.assignedTo.name;
+      }
+      $('#homeList').append('<li class="list-group-item"><h4 class="list-group-item-heading">' + thing.description + '</h4><p class="list-group-item-text">Priority: ' + thing.priority + '</p><p class="list-group-item-text">' + name + '</p></li>');
+    }
+  });
 });
