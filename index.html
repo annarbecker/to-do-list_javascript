@@ -95,6 +95,19 @@
             </div>
             <button type="submit" class="btn btn-info">See Tasks</button>
           </form>
+          <br>
+          <form class="form-inline" id="choosePriority">
+            <div class="form-group">
+              <label for="priority">Select Priority</label>
+              <select class="form-control" id="priority">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-info">See Tasks</button>
+          </form>
+          <hr>
           <div class="taskLists" id="allHomeTasks">
             <h2>To Do: Home</h2>
             <div class="list-group" id="homeList">
@@ -123,6 +136,16 @@
             <div class="list-group" id="personList">
 
             </div>
+            <button type="button" class="btn btn-danger" id="highest">See Highest Priority</button>
+            <h1 id="urgent">
+          </div>
+          <div class="taskLists" id="tasksByPriority">
+            <div class="list-group" id="priorityList">
+
+            </div>
+
+
+            </h1>
           </div>
         </div>
 

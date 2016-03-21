@@ -20,4 +20,32 @@ module ToDoList {
 
     return selectedTasks;
   }
+
+  export var listTasksByPriority = function(taskPriority: string, taskCollection: Task[]): Task[] {
+    var selectedTasks: Task[] = [];
+    for(var task of taskCollection) {
+      if(task.priority === taskPriority) {
+        selectedTasks.push(task);
+      }
+    }
+    return selectedTasks;
+  }
+
+  export var getHighestPriorityTask = function(assignee: IPerson, taskCollection: Task[]): Task {
+    for(var task of taskCollection){
+      if(task.priority === "High" && task.assignedTo === assignee) {
+        return task;
+      }
+    }
+    for(var task of taskCollection){
+      if(task.priority === "Medium" && task.assignedTo === assignee) {
+        return task;
+      }
+    }
+    for(var task of taskCollection){
+      if(task.priority === "Low" && task.assignedTo === assignee) {
+        return task;
+      }
+    }
+  }
 }

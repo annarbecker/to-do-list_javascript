@@ -5,6 +5,22 @@
 var people = ToDoList.people;
 
 var tasks = [];
+tasks.push(new ToDoList.HomeTask("Do the dishes.", "High"));
+tasks.push(new ToDoList.HomeTask("Buy chocolate.", "Low", people.diane));
+tasks.push(new ToDoList.HomeTask("Wash the laundry.", "High"));
+tasks.push(new ToDoList.HobbyTask("Practice origami."));
+tasks.push(new ToDoList.HobbyTask("Bake a pie."));
+var today = new Date();
+var tomorrow = new Date();
+tomorrow.setDate(today.getDate() + 1);
+var nextDay = new Date();
+nextDay.setDate(today.getDate() + 2);
+
+tasks.push(new ToDoList.WorkTask(today, "Update blog.", "High", people.diane));
+tasks.push(new ToDoList.WorkTask(tomorrow, "Go to meeting.", "Medium", people.thor));
+tasks.push(new ToDoList.WorkTask(tomorrow, "Save the world.", "High", people.thor));
+tasks.push(new ToDoList.WorkTask(tomorrow, "Buy a new shirt.", "Low", people.thor));
+tasks.push(new ToDoList.WorkTask(nextDay, "Clean ceiling.", "Low", people.loki));
 
 $(document).ready(function() {
   for(var person in people) {
@@ -12,12 +28,32 @@ $(document).ready(function() {
   }
 
   $("#choosePerson").submit(function(e){
+    $(".taskLists").hide();
+    $("#tasksByPerson").show();
     e.preventDefault();
-    var name: string = $("#person").val();
-    var theseTasks = ToDoList.describeTasksForPerson(people[name], tasks);
-    $("#personName").text(people[name].name);
+    var title: string = $("#person").val();
+    $("#personList").empty();
+    var theseTasks = ToDoList.describeTasksForPerson(people[title], tasks);
+    $("#personName").text(people[title].name);
     for(var blah of theseTasks) {
       $('#personList').append('<li class="list-group-item"><h4 class="list-group-item-heading">' + blah + '</h4></li>');
+    }
+    $("#highest").click(function(e){
+      e.preventDefault();
+      var urgent: Task = ToDoList.getHighestPriorityTask(people[title], tasks);
+      $("#urgent").html("Highest priority task for " + people[title].name + " is " + urgent.description + "!!!");
+    });
+  });
+
+  $("#choosePriority").submit(function(e){
+    $(".taskLists").hide();
+    $("#tasksByPriority").show();
+    e.preventDefault();
+    var level: string = $("#priority").val();
+    $("#priorityList").empty();
+    var theseTasks = ToDoList.listTasksByPriority(level, tasks);
+    for(var blah of theseTasks) {
+      $('#priorityList').append('<li class="list-group-item"><h4 class="list-group-item-heading">' + blah.description + '</h4></li>');
     }
   });
 
@@ -45,6 +81,8 @@ $(document).ready(function() {
 
   $('#addHobbyTask').submit(function(event) {
     event.preventDefault();
+    $(".taskLists").hide();
+    $("#allHobbyTasks").show();
     var hobby: string = $('#hobbyName').val();
     $('#hobbyName').val('');
     $('#hobbyList').empty();
@@ -58,6 +96,8 @@ $(document).ready(function() {
 
   $('#addHomeTask').submit(function(event) {
     event.preventDefault();
+    $(".taskLists").hide();
+    $("#allHomeTasks").show();
     var home: string = $('#homeName').val();
     var wait: string = $('#homePriority').val();
     var assignee: string = $('#homeAssign').val();
@@ -83,6 +123,8 @@ $(document).ready(function() {
 
   $('#addWorkTask').submit(function(event) {
     event.preventDefault();
+    $(".taskLists").hide();
+    $("#allWorkTasks").show();
     var work: string = $('#workName').val();
     var wait: string = $('#workPriority').val();
     var assignee: string = $('#workAssign').val();
@@ -97,7 +139,7 @@ $(document).ready(function() {
     console.log(works);
     for(var thing of works) {
 
-      $('#workList').append('<li class="list-group-item"><h4 class="list-group-item-heading">' + thing.description + '</h4><p class="list-group-item-text">Priority: ' + thing.priority + '</p><p class="list-group-item-text">Assigned To: ' + thing.assignedTo.name + '</p><p class="list-group-item-text">Due Date: ' + thing.dueDate + '</p></li>');
+      $('#workList').append('<li class="list-group-item"><h4 class="list-group-item-heading">' + thing.description + '</h4><p class="list-group-item-text">Priority: ' + thing.priority + '</p><p class="list-group-item-text">Assigned To: ' + thing.assignedTo.name + '</p><p class="list-group-item-text">Due Date: ' + thing.dueDate.toDateString() + '</p></li>');
     }
   });
 });
