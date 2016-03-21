@@ -14,11 +14,13 @@ $(document).ready(function() {
     var category: string = $('#taskCategory').val();
     if (category === "Home") {
       $('#homeTask').show();
+      $("#homeAssign").html('<option value="none"></option>');
       for(var person in people) {
         $('#homeAssign').append("<option value='" + person + "'>" + people[person].name + "</option>");
       }
     } else if (category === "Work") {
       $('#workTask').show();
+      $("#workAssign").empty();
       for(var person in people) {
         $('#workAssign').append("<option value='" + person + "'>" + people[person].name + "</option>");
       }
@@ -62,6 +64,26 @@ $(document).ready(function() {
         var name = thing.assignedTo.name;
       }
       $('#homeList').append('<li class="list-group-item"><h4 class="list-group-item-heading">' + thing.description + '</h4><p class="list-group-item-text">Priority: ' + thing.priority + '</p><p class="list-group-item-text">' + name + '</p></li>');
+    }
+  });
+
+  $('#addWorkTask').submit(function(event) {
+    event.preventDefault();
+    var work: string = $('#workName').val();
+    var wait: string = $('#workPriority').val();
+    var assignee: string = $('#workAssign').val();
+    var dueDate: string = $('#workDate').val();
+    var due: Date = new Date(dueDate);
+    $('#workName').val('');
+    $('#workList').empty();
+    $('#workDate').val('');
+    tasks.push(new ToDoList.WorkTask(due, work, wait, people[assignee]));
+    console.log(tasks);
+    var works = ToDoList.listTasksInCategory(ToDoList.WorkTask, tasks);
+    console.log(works);
+    for(var thing of works) {
+
+      $('#workList').append('<li class="list-group-item"><h4 class="list-group-item-heading">' + thing.description + '</h4><p class="list-group-item-text">Priority: ' + thing.priority + '</p><p class="list-group-item-text">Assigned To: ' + thing.assignedTo.name + '</p><p class="list-group-item-text">Due Date: ' + thing.dueDate + '</p></li>');
     }
   });
 });
