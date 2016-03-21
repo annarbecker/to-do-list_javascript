@@ -2,10 +2,93 @@
 <html>
   <head>
     <link rel="stylesheet" href="build/css/vendor.css">
+    <link rel="stylesheet" href="build/css/styles.css">
     <script src="build/js/vendor.min.js"></script>
     <script type="text/javascript" src="build/js/app.js"></script>
     <title>Yet Another To Do List!!!!!!!!!</title>
   </head>
   <body>
+    <div class="jumbotron">
+      <h1>Manage Your Life</h1>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <form id="selectCategory">
+            <div class="form-group">
+              <label for="taskCategory">Select Category:</label>
+              <select class="form-control" id="taskCategory">
+                <option value="Home">Home</option>
+                <option value="Work">Work</option>
+                <option value="Hobby">Hobby</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Select</button>
+          </form>
+        </div>
+        <div class="col-md-8">
+          <div class="taskForms" id="homeTask">
+            <form id="addHomeTask">
+              <div class="form-group">
+                <label for="homeName">Task Description:</label>
+                <input type="text" class="form-control" id="homeName" required>
+              </div>
+              <div class="form-group">
+                <label for="homePriority">Priority:</label>
+                <select class="form-control" id="homePriority">
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="homeAssign">Assigned To (optional):</label>
+                <select class="form-control people" id="homeAssign">
+                  <option value="none"></option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Add Home Task</button>
+            </form>
+          </div>
+          <div class="taskForms" id="workTask">
+            <form id="addWorkTask">
+              <div class="form-group">
+                <label for="workName">Task Description:</label>
+                <input type="text" class="form-control" id="workName" required>
+              </div>
+              <div class="form-group">
+                <label for="workPriority">Priority:</label>
+                <select class="form-control" id="workPriority">
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="workAssign">Assigned To:</label>
+                <select class="form-control people" id="workAssign" required>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="workDate">Due Date:</label>
+                <input type="date" id="workDate" class="form-control" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Add Work Task</button>
+            </form>
+          </div>
+          <div class="taskForms" id="hobbyTask">
+            <form id="addHobbyTask">
+              <div class="form-group">
+                <label for="hobbyName">Task Description:</label>
+                <input type="text" class="form-control" id="hobbyName" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Add Hobby Task</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </body>
 </html>
