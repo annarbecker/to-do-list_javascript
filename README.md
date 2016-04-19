@@ -2,7 +2,7 @@
 
 #### Website to track a user's tasks
 
-#### By Anna Becker
+#### By Anna Becker & Abby Rolling
 
 ## Description
  A website where the user can enter categories and tasks to create their to do list
@@ -47,7 +47,7 @@ JavaScript, jQuery, Gulp, Bower, SCSS, moment.js
 
 This software is licensed under the MIT license.
 
-Copyright (c) 2016 Anna Becker
+Copyright (c) 2016 Anna Becker & Abby Rolling
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
